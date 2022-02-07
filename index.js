@@ -32,7 +32,8 @@ client.on('messageCreate', async message => {
 		
   if (text.startsWith('.rand')) {
     const items = text.split(' ').slice(1)
-    message.reply(items[Math.floor(Math.random()*items.length)])
+    if (items.length > 0) message.reply(items[Math.floor(Math.random()*items.length)])
+    return
   }
 
   if (!channel) {

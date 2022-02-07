@@ -29,6 +29,11 @@ client.on('messageCreate', async message => {
     handleYoonMessage(message)
     return
   }
+		
+  if (text.startsWith('.rand')) {
+    const items = text.split(' ').slice(1)
+    message.reply(items[Math.floor(Math.random()*items.length)])
+  }
 
   if (!channel) {
      return
@@ -50,11 +55,6 @@ client.on('messageCreate', async message => {
     } catch (error) {
       console.error(error);
     }
-  }
-	
-  if (text.startsWith('.rand')) {
-    const items = text.split(' ').slice(1)
-    message.reply(items[Math.floor(Math.random()*items.length)])
   }
 });
 

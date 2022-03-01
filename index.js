@@ -53,6 +53,7 @@ client.on('messageCreate', async message => {
       } else if (text.startsWith('.ปิสอนเชิง')) {
         playSong(connection, './assets/voices/poomteaching.mp3')
       } else if (text.startsWith('.กระจอก')) {
+	console.log("กระจอก")
         playSong(connection, './assets/voices/kk_i_here.mp3')
       }
     } catch (error) {

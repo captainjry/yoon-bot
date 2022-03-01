@@ -39,7 +39,7 @@ client.on('messageCreate', async message => {
   if (!channel) {
      return
   }
-  if (text === '.bruh' || text.startsWith('.ยูน') || text.startsWith('.หลานยายยูน') || text.startsWith('.ปิออกไปดิ') || text.startsWith('.ปิสอนเชิง')) {
+  if (text === '.bruh' || text.startsWith('.ยูน') || text.startsWith('.หลานยายยูน') || text.startsWith('.ปิออกไปดิ') || text.startsWith('.ปิสอนเชิง') || text.startsWith('.กระจอก')) {
     try {
       const connection = await connectToChannel(message);
       console.log(text)

@@ -42,6 +42,7 @@ client.on('messageCreate', async message => {
   if (text === '.bruh' || text.startsWith('.ยูน') || text.startsWith('.หลานยายยูน') || text.startsWith('.ปิออกไปดิ') || text.startsWith('.ปิสอนเชิง')) {
     try {
       const connection = await connectToChannel(message);
+      console.log(text)
       if (text === '.bruh') {
         playSong(connection, './assets/voices/capohobrother.mp3')
       } else if (text.startsWith('.ยูน')) {
@@ -53,7 +54,6 @@ client.on('messageCreate', async message => {
       } else if (text.startsWith('.ปิสอนเชิง')) {
         playSong(connection, './assets/voices/poomteaching.mp3')
       } else if (text.startsWith('.กระจอก')) {
-	console.log("กระจอก")
         playSong(connection, './assets/voices/kk_i_here.mp3')
       }
     } catch (error) {

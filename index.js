@@ -17,6 +17,14 @@ client.on('ready', async () => {
   client.user.setActivity('with granny yoon')
 });
 
+client.on('voiceStateUpdate', (oldState, newState) => {
+  if (oldState.channelID !==  oldState.guild.me.voice.channelID || newState.channel) return;
+
+  if (!oldState.channel.members.size - 1) {
+     oldState.channel.leave();
+  }
+});
+
 client.on('messageCreate', async message => {
   console.log(message.member.user)
   const channel = message.member.voice.channel;

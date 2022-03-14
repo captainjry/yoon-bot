@@ -1,5 +1,6 @@
 const { Client, Intents } = require('discord.js');
 const {
+  getVoiceConnection,
   joinVoiceChannel,
   createAudioPlayer,
   createAudioResource,
@@ -11,7 +12,6 @@ const {
 const { createDiscordJSAdapter } = require('./adapter');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES] });
-let connection;
 
 client.on('ready', async () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -20,6 +20,7 @@ client.on('ready', async () => {
 
 client.on('voiceStateUpdate', (oldState, newState) => {
   if (oldState.channelID !==  oldState.guild.me.voice.channelID || newState.channel) return;
+  const connection = getVoiceConnection(oldState.guild.id);
 
   if (!oldState.channel.members.size - 1) {
      connection.disconnect();
@@ -50,9 +51,7 @@ client.on('messageCreate', async message => {
   }
   if (text === '.bruh' || text.startsWith('.ยูน') || text.startsWith('.หลานยายยูน') || text.startsWith('.ปิออกไปดิ') || text.startsWith('.ปิสอนเชิง') || text.startsWith('.กระจอก')) {
     try {
-      if (!connection) {
-        connection = await connectToChannel(message);
-      }
+      const connection = await connectToChannel(message);
       console.log(text)
       if (text === '.bruh') {
         playSong(connection, './assets/voices/capohobrother.mp3')
